@@ -56,6 +56,21 @@
                 <li>@item</li>
             }
         </ul>
+        <div>
+            @{
+                string pw = "123";
+                <h3>密碼 @pw</h3>
+                @*輸出純文字可以用@:*@
+                @:密碼 @pw
+                <br />
+                @*也可以用<text>標籤*@
+                <text>密碼</text> @pw
+                <br />
+                //反正一定可以用@()
+                @($"密碼 {pw}")
+            }
+
+        </div>
     </div>
 </body>
 </html>
