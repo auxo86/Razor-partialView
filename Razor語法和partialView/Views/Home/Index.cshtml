@@ -1,0 +1,61 @@
+﻿@*這裡就是c# code block*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @{
+            string name = "adams";
+            string a = "2017/10/10";
+            //DateTime d = Convert.ToDateTime(a);
+            //DateTime d = DateTime.Parse(a);
+            DateTime d = a.AsDateTime();
+        }
+
+        @name
+        @a
+        @d
+        <hr />
+        <h3>@name</h3>
+        <hr />
+        <h3>name:@name</h3>
+        <hr />
+        <h3>@(name)name:</h3>
+        <hr />
+        @*記得@後面的()*@
+        <h3>@($"姓名:{name}先生")</h3>
+        <hr />
+        <input type="text" name="name" value="@name" />
+        <hr />
+        <input type="text" name="name" value="@d.ToString("yyyyMMdd")" />
+        <hr />
+        @{
+            int m = 10;
+            string s = "<h1>demo</h1>";
+            string[] data = { "item1", "item2", "item3" };
+        }
+        <ul>
+            <li> 不用轉字串 : @m </li>
+            <li> 自動做HTMLEncode : @s </li>
+            @*會造成XSS攻擊*@
+            <li> 不做HTMLEncode: @Html.Raw(s) </li>
+        </ul>
+        <ul>
+            @foreach (var item in data)
+            {
+                //如果這一行中有標籤，就會被當成是整行都是HTML code
+                //所以要加@
+                <li>@item</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>
